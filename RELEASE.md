@@ -25,7 +25,7 @@ draft. OpenAI-specific review metadata is not a Cursor submission requirement.
 ## Release gates
 
 - [ ] Run the Rails regression checklist on the compatibility PR.
-- [ ] Human review, merge, and deployment of required callback support.
+- [x] Human merge and deployment of required callback support; production registration verified October 9, 2026.
 - [ ] Validate the exact public package checkout with `python3 scripts/validate_package.py`.
 - [x] Load the package in Cursor and verify manifest and MCP server discovery.
 - [ ] Finish OAuth after required callback support is deployed.
@@ -35,7 +35,7 @@ draft. OpenAI-specific review metadata is not a Cursor submission requirement.
 - [ ] Check token refresh and revocation, read-only writes, feature permissions,
       and organization/record isolation.
 - [ ] Verify ChatGPT and Claude authorization after the server release.
-- [ ] Prepare and verify an actual demo recording and private reviewer access if requested.
+- [ ] Prepare an actual demo recording and private reviewer access if requested by the authenticated form or reviewers. Cursor's public submission checklist does not list a required demo video.
 - [ ] Sign in to https://cursor.com/marketplace/publish using the Outfield publisher account.
 - [ ] Complete publisher application and inspect its actual required fields.
 - [ ] Submit the public repository only after the preceding verification passes;
@@ -49,7 +49,9 @@ draft. OpenAI-specific review metadata is not a Cursor submission requirement.
 The current Grok custom connector callback is
 `https://grok.com/connectors-oauth-exchange-code/`. Cursor documents
 `https://www.cursor.com/agents/mcp/oauth/callback` and
-`http://localhost:8787/callback`. Grok Bot's actual callback is **unobserved**.
+`http://localhost:8787/callback`. Cursor also registers the native callback
+`cursor://anysphere.cursor-mcp/oauth/callback`; production now accepts all three
+together. Grok Bot's actual callback is **unobserved**.
 Do not guess additional callbacks or widen origin rules based on a brand name.
 If live testing shows an unrecognized callback/origin, record it and request a
 narrow server change before proceeding. Server-side clients may send no Origin;
@@ -65,12 +67,12 @@ verify that behavior rather than adding unnecessary hosts.
 | Support contact | Passed | Published Outfield support page identifies `support@outfieldapp.com`. |
 | Package validation | Passed | `python3 scripts/validate_package.py`: Outfield 1.0.0, one remote OAuth MCP connection, existing 300 x 300 PNG logo. Repeat on the submitted Git SHA. |
 | Rails regression suite | Not run | User will run tests manually; capture commands, seed, results and failures. |
-| Production callback deployment | Not verified | Human merge/deployment required. |
+| Production callback deployment | Passed | October 9, 2026: discovery endpoints returned 200; `POST /oauth/register` with all three Cursor callbacks returned 201 and preserved all three, public-client authentication, and `ai:read ai:write`. Adding a lookalike native callback returned 400 `invalid_redirect_uri`. No user authorization or CRM data access occurred. |
 | Cursor local package discovery | Passed | Native Customize UI on October 8, 2026 displays Outfield 1.0.0, its logo, repository/homepage, and MCPs 1. Local checkout installed at `~/.cursor/plugins/local/outfield`. |
-| Cursor OAuth | Blocked | Actual local connection fails at registration with `redirect_uris are not allowed`; required server callback deployment is pending. No OAuth consent or tool calls completed. |
+| Cursor OAuth | Pending user verification | Production registration blocker resolved October 9, 2026. Reconnect in Cursor and verify browser consent and authenticated tools; these have not been completed by the agent. |
 | Grok Bot pre-release install | Not run | Use a supported pre-release connection if available; otherwise verify after listing. |
 | Review scenarios / demo | Not run | REVIEW.md contains expected results and a recording script only. |
-| Publisher application / submission | Not done | Outfield publisher sign-in and preceding gates required. |
+| Publisher application / submission | Not done | October 9, 2026: publish page displays “Sign in to apply” and requires sign-in for a plugin publisher application. Authenticated fields remain unverified. Outfield publisher sign-in and preceding gates required. |
 | Marketplace approval / Grok Bot install | Not done | External review and actual installation required. |
 
 For manual runs, append host/version, Git SHA, test date, case, outcome
