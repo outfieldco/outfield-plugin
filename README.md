@@ -146,9 +146,9 @@ Outfield's name and logo are trademarks; the license grants no trademark rights.
 ## Maintainers
 
 Validate package files with `python3 scripts/validate_package.py`. Release versions
-use semantic versioning. Commit messages must include `[skip ci]`; verification is
-performed manually before submission. Follow [RELEASE.md](RELEASE.md) for every
-release, including Cursor's separate review of plugin updates.
+use semantic versioning. Verification is performed manually before submission.
+Follow [RELEASE.md](RELEASE.md) for every release, including Cursor's separate review
+of plugin updates.
 
 References: [Cursor plugin format](https://cursor.com/docs/reference/plugins),
 [local plugin testing](https://cursor.com/docs/plugins),
