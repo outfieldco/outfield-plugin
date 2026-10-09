@@ -18,9 +18,6 @@ marketplace review, and Grok Bot installation have not been completed. This
 repository's existence does not mean the plugin is listed. See [release checks](RELEASE.md)
 and [review scenarios](REVIEW.md) for outstanding work and verification records.
 
-Cursor's web and desktop OAuth callbacks require the corresponding Outfield
-server release. Complete the release checks before relying on those connections.
-
 ## Requirements
 
 - An active Outfield account in an active organization with the **AI** feature enabled.
