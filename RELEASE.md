@@ -2,6 +2,26 @@
 
 **Status: package prepared; not submitted, approved, or listed.**
 
+This is Outfield's internal release checklist and evidence log. Cursor reviewers
+are not expected to perform these engineering checks or prepare an Outfield test
+environment. REVIEW.md contains a short suggested walkthrough using a demo account
+and data supplied by Outfield.
+
+## Confirmed Cursor requirements
+
+Cursor's [public submission checklist](https://cursor.com/docs/reference/plugins)
+requires a valid plugin manifest, public repository, usage/configuration README,
+valid component files and relative paths, and local testing. A supplied logo must
+be committed and correctly referenced. Submit the repository link at
+https://cursor.com/marketplace/publish; the page currently requires sign-in to
+apply as a publisher.
+
+The public checklist does not specify five positive cases, three negative cases,
+a demo video, or reviewer account creation. The authenticated form's additional
+fields and requirements remain unverified. If access is requested, Outfield
+supplies an existing demo login and prepared sample data privately, as with its
+previous submissions.
+
 ## Listing draft
 
 - Name / identifier: Outfield / `outfield`
@@ -22,7 +42,9 @@ additional required publisher or listing facts from verified company information
 Do not infer country targeting, commerce declarations, or attestations from this
 draft. OpenAI-specific review metadata is not a Cursor submission requirement.
 
-## Release gates
+## Outfield engineering verification
+
+Owned by Outfield, not Cursor reviewers:
 
 - [ ] Run the Rails regression checklist on the compatibility PR.
 - [x] Human merge and deployment of required callback support; production registration verified October 9, 2026.
@@ -31,14 +53,21 @@ draft. OpenAI-specific review metadata is not a Cursor submission requirement.
 - [ ] Finish OAuth after required callback support is deployed.
 - [ ] Record the actual callback URI and origin hostname for each tested host,
       without tokens, authorization codes, cookies, or customer data.
-- [ ] Run all review scenarios against disposable sample data; record outcomes.
+- [ ] Verify representative read and write workflows using the existing demo account and disposable sample data; record outcomes. REVIEW.md provides optional examples.
 - [ ] Check token refresh and revocation, read-only writes, feature permissions,
       and organization/record isolation.
 - [ ] Verify ChatGPT and Claude authorization after the server release.
-- [ ] Prepare an actual demo recording and private reviewer access if requested by the authenticated form or reviewers. Cursor's public submission checklist does not list a required demo video.
+
+## Publisher submission and follow-up
+
+Owned by the Outfield publisher:
+
+- [ ] Verify an existing demo account works with Cursor and its sample data supports the suggested walkthrough. No reviewer account creation or data preparation is expected.
+- [ ] Supply credentials and actual sample record names privately if reviewer access is requested.
+- [ ] Provide a demo recording only if requested by the form/reviewers or chosen by Outfield.
 - [ ] Sign in to https://cursor.com/marketplace/publish using the Outfield publisher account.
 - [ ] Complete publisher application and inspect its actual required fields.
-- [ ] Submit the public repository only after the preceding verification passes;
+- [ ] Submit the locally tested public repository after Outfield's release verification;
       the authorized publisher completes any legal attestations.
 - [ ] Record submission confirmation, submitted Git SHA/version, and review status.
 - [ ] Address review feedback and record approval/listing URL.

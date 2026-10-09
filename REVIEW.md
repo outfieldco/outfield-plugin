@@ -1,22 +1,47 @@
 # Review scenarios for Outfield 1.0.0
 
-## Dedicated sample environment
+These are suggested examples prepared by Outfield, not a Cursor-mandated test
+plan. Cursor's [public submission checklist](https://cursor.com/docs/reference/plugins)
+does not specify a scenario count or require a demo video. Additional requirements
+in the authenticated publisher form remain unverified.
 
-Use a dedicated, active Outfield user in an organization with AI enabled, permitted
-contacts, activity, deals, and goals. Give that user only the permissions needed
-for these scenarios. Include a sample account named **Plugin Review Grocery**,
-recent activity, a current-month deal, and a goal with known progress. Provide a
-second organization and a restricted account for access-control checks.
+## Simple reviewer walkthrough
 
-Write tests use disposable sample records only. Keep passwords, login instructions
-containing private tenant details, tokens, and OAuth codes outside this repository.
-If reviewer access is requested, provide it through the publisher's private
-submission channel. Reviewers must not depend on an employee's mailbox or MFA device.
+Outfield supplies an existing demo login with sample data through the private
+submission channel if reviewer access is requested. Reviewers do not need to
+create an Outfield account, configure an organization, enable features, or seed data.
+
+1. Connect the Outfield plugin in Cursor and sign in with the supplied demo login.
+2. Ask for the details and recent activity of the sample account named in the
+   private reviewer instructions. Results should match its prepared sample data.
+3. Optionally ask for the demo user's deals or goals, or log a note on the sample
+   account. The note should appear in Outfield; it creates a real disposable record.
+
+The optional examples below give prompts and expected results if more coverage is
+useful. There is no claim that Cursor requires reviewers to run all of them.
+
+## Outfield prepares access and data
+
+Reuse the existing demo account used for previous submissions if it supports
+Cursor OAuth and has the needed AI, contact, activity, deal, and goal permissions.
+Outfield verifies the login and data before supplying access. Give reviewers the
+login URL, credentials, actual sample account name, and a few known results privately.
+Keep access working during review without dependence on an employee's mailbox or
+MFA device.
+
+**Plugin Review Grocery** below is a proposed fixture name, not a verified existing
+record. Replace it with an account already in the demo data before sharing prompts.
+Outfield supplies recent activity, a deal and goal for the relevant periods, and
+disposable records for writes. Reviewers do not prepare these fixtures.
+
+Keep passwords, private login instructions, tokens, and OAuth codes outside this
+repository. Organization-isolation and restricted-account fixtures are for
+Outfield's own engineering checks, not reviewer setup.
 
 All scenarios below are **Not run**. Record actual evidence in RELEASE.md; an
 expected result is not a verified result.
 
-## Five positive scenarios
+## Optional supported examples
 
 | Case | Natural-language prompt | Expected calls and observable result |
 | --- | --- | --- |
@@ -26,7 +51,7 @@ expected result is not a verified result.
 | Goals | "How am I progressing toward my goals?" | `get_user_goals`, optionally `get_user_goal_detail` for detail. Report actual target, progress and period from results, without inventing missing goals. |
 | Write | "Log a note on Plugin Review Grocery: [Plugin review] follow up next week." | `search_contacts`, then `create_note` using the selected contact ID and the exact note text. With permitted `ai:write`, one note is created and its returned ID is visible in Outfield. Repeating this scenario intentionally creates another record. |
 
-## Three unsupported scenarios
+## Optional unsupported examples
 
 | Prompt | Expected behavior |
 | --- | --- |
@@ -34,7 +59,9 @@ expected result is not a verified result.
 | "Send an actual email to Plugin Review Grocery now." | Explain that the connector logs email activity but does not send email. Do not call `create_email` as a substitute or claim a message was sent. |
 | "Create a recurring weekly calendar event for Plugin Review Grocery." | Explain that recurring events are unsupported. Do not silently create a single event or claim recurrence was scheduled. |
 
-## Additional boundaries
+## Outfield engineering checks
+
+Outfield verifies these boundaries before release; this is not a reviewer task list.
 
 - Read-only OAuth tokens cannot create notes or deals.
 - A user cannot retrieve records from an inaccessible organization or create
@@ -45,7 +72,10 @@ expected result is not a verified result.
 - Ambiguous names prompt selection; record IDs come from actual search results.
 - Lists respect limits and pagination; no unbounded contact export is attempted.
 
-## Demonstration script — recording pending
+## Optional demonstration script — recording pending
+
+Record this walkthrough if the publisher form or reviewers request a video, or
+if Outfield chooses to provide one. It is not a confirmed Cursor requirement.
 
 1. Show version 1.0.0 loaded in Cursor and finish OAuth without showing credentials.
 2. Run the account lookup and activity summary prompts; pause on readable results.
