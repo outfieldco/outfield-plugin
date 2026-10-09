@@ -27,7 +27,8 @@ draft. OpenAI-specific review metadata is not a Cursor submission requirement.
 - [ ] Run the Rails regression checklist on the compatibility PR.
 - [ ] Human review, merge, and deployment of required callback support.
 - [ ] Validate the exact public package checkout with `python3 scripts/validate_package.py`.
-- [ ] Load the package in Cursor, verify manifest and MCP discovery, and finish OAuth.
+- [x] Load the package in Cursor and verify manifest and MCP server discovery.
+- [ ] Finish OAuth after required callback support is deployed.
 - [ ] Record the actual callback URI and origin hostname for each tested host,
       without tokens, authorization codes, cookies, or customer data.
 - [ ] Run all review scenarios against disposable sample data; record outcomes.
@@ -65,7 +66,8 @@ verify that behavior rather than adding unnecessary hosts.
 | Package validation | Passed | `python3 scripts/validate_package.py`: Outfield 1.0.0, one remote OAuth MCP connection, existing 300 x 300 PNG logo. Repeat on the submitted Git SHA. |
 | Rails regression suite | Not run | User will run tests manually; capture commands, seed, results and failures. |
 | Production callback deployment | Not verified | Human merge/deployment required. |
-| Cursor local install and OAuth | Not run | Needs an available Cursor test session and deployed callbacks. |
+| Cursor local package discovery | Passed | Native Customize UI on October 8, 2026 displays Outfield 1.0.0, its logo, repository/homepage, and MCPs 1. Local checkout installed at `~/.cursor/plugins/local/outfield`. |
+| Cursor OAuth | Blocked | Actual local connection fails at registration with `redirect_uris are not allowed`; required server callback deployment is pending. No OAuth consent or tool calls completed. |
 | Grok Bot pre-release install | Not run | Use a supported pre-release connection if available; otherwise verify after listing. |
 | Review scenarios / demo | Not run | REVIEW.md contains expected results and a recording script only. |
 | Publisher application / submission | Not done | Outfield publisher sign-in and preceding gates required. |
