@@ -13,10 +13,9 @@ needed. The repository contains no server implementation or workflow skills.
 
 ## Release status
 
-Version **1.0.0 is prepared for verification**. The Cursor publisher application,
+Version **1.0.0 has been tested locally in Cursor**. The Cursor publisher application,
 marketplace review, and Grok Bot installation have not been completed. This
-repository's existence does not mean the plugin is listed. See [release checks](RELEASE.md)
-and [review scenarios](REVIEW.md) for outstanding work and verification records.
+repository's existence does not mean the plugin is listed.
 
 ## Requirements
 
@@ -144,8 +143,7 @@ Outfield's name and logo are trademarks; the license grants no trademark rights.
 
 Validate package files with `python3 scripts/validate_package.py`. Release versions
 use semantic versioning. Verification is performed manually before submission.
-Follow [RELEASE.md](RELEASE.md) for every release, including Cursor's separate review
-of plugin updates.
+Cursor reviews plugin updates before publication.
 
 References: [Cursor plugin format](https://cursor.com/docs/reference/plugins),
 [local plugin testing](https://cursor.com/docs/plugins),

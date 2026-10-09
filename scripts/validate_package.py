@@ -33,11 +33,11 @@ def main():
     assert logo[:8] == b"\x89PNG\r\n\x1a\n", "Logo must be a PNG"
     width, height = struct.unpack(">II", logo[16:24])
     assert width >= 256 and height >= 256 and len(logo) <= 5 * 1024 * 1024
-    for name in ("README.md", "LICENSE", "REVIEW.md", "RELEASE.md"):
+    for name in ("README.md", "LICENSE"):
         contained_file(name)
     allowed = {
         ".cursor-plugin/plugin.json", "mcp.json", "assets/logo.png", "README.md",
-        "LICENSE", "REVIEW.md", "RELEASE.md", "scripts/validate_package.py", ".gitignore"
+        "LICENSE", "scripts/validate_package.py", ".gitignore"
     }
     files = [p for p in ROOT.rglob("*") if p.is_file() and ".git" not in p.relative_to(ROOT).parts]
     assert all(p.relative_to(ROOT).as_posix() in allowed for p in files), "Unexpected packaged file"
