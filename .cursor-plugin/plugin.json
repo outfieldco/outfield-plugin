@@ -1,0 +1,15 @@
+{
+  "name": "outfield",
+  "version": "1.0.0",
+  "description": "Connect Outfield CRM to search accounts, review activity, deals, goals and league play, and log activity using your existing permissions.",
+  "author": {
+    "name": "Outfield",
+    "email": "support@outfieldapp.com"
+  },
+  "homepage": "https://run.outfieldapp.com/docs/mcp",
+  "repository": "https://github.com/outfieldco/outfield-plugin",
+  "license": "MIT",
+  "keywords": ["outfield", "crm", "field-sales", "contacts", "deals", "mcp"],
+  "logo": "assets/logo.png",
+  "mcpServers": "mcp.json"
+}
